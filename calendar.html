@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>calendar_7</title>
+	<link rel="stylesheet" href="calendar.css">
+	<script type="text/javascript" src="calendar.js"></script>
+	<script>
+
+		 // 初期値
+		today = new Date();
+		today_year = today.getFullYear();
+		today_month = today.getMonth()+1;
+
+		/**
+		 * カレンダー関数からカレンダーを取得して、ページに埋め込む関数
+		 *
+		 */
+		function set_calender(my_form){
+
+			// フォーム情報の取得
+			var my_year = my_form.year.value;
+			var my_month = my_form.month.value;
+			var my_sample = my_form.sample.value;
+
+			// カレンダーパラメータ
+			var my_params = [];
+			my_params['css_table'] = 'default';// テーブルCSS
+			my_params['css_markup'] = 'mark';// TodayマークアップCSS
+
+			// CSSを設定
+			if(my_sample != 0 ){
+				my_params['css_table'] = "bg0" + my_sample;
+				my_params['css_markup'] = "mark0" + my_sample;
+			}
+
+			// 指定月のカレンダーを取得
+			var my_calendar = calendar(my_year, my_month, createParams(my_params));
+
+			// 先月のカレンダー取得
+			var ary_last = getAroundMonth(my_year, my_month, 'last');
+			my_params['css_position'] = 'lastMonthCalendar_table';
+			var my_last_calendar = calendar(ary_last[0], ary_last[1], createParams(my_params));
+
+			// 来月のカレンダー取得
+			var ary_next = getAroundMonth(my_year, my_month, 'next');
+			my_params['css_position'] = 'nextMonthCalendar_table';
+			var my_next_calendar = calendar(ary_next[0], ary_next[1], createParams(my_params));
+
+			// カレンダーを配置
+			document.getElementById("calendar").innerHTML = my_calendar;
+			document.getElementById("lastmonth").innerHTML = my_last_calendar;
+			document.getElementById("nextmonth").innerHTML = my_next_calendar;
+
+
+		}
+
+
+	</script>
+</head>
+
+<body onLoad="set_calender(this.calen)" >
+	<div id="wrapper">
+		<form id="calen" name="calen">
+
+			<p>西暦
+			<select id="year" name="year" onChange="set_calender(this.form)">
+				<script>
+					var year_option;
+					for (i = today_year-5; i <= today_year+10; i++) {
+						todayMark = "";
+						selected = "";
+						if(i == today_year){
+							todayMark = "*"
+							selected = " selected";
+						}
+						year_option += "<option value=" + i + selected + ">" + todayMark + i+ "年</option>";
+					}
+					document.write(year_option);
+
+				</script>
+			</select>
+
+			<p>月&nbsp;&nbsp;&nbsp;
+			<select id="month" name="month" onChange="set_calender(this.form)">
+				<script>
+					var month_option;
+					for (j = 1; j <= 12; j++) {
+						todayMark = "";
+						selected = "";
+						if(j == today_month){
+							todayMark = "*";
+							selected = " selected";
+						}
+						month_option += "<option value=" + j + selected + ">" + todayMark + j+ "月</option>";
+					}
+					document.write(month_option);
+				</script>
+			</select></p>
+
+			<select class="sample" name="sample" onchange="set_calender(this.form)">
+				<option value="0" selected>サンプル</option>
+				<option value="1">サンプル01</option>
+				<option value="2">サンプル02</option>
+			</select>
+		</form>
+
+
+		<div id="calendar"></div>
+		<div id="lastmonth"></div>
+		<div id="nextmonth"></div>
+	</div><!--wrapper-->
+</body>
+</html>

@@ -1,0 +1,87 @@
+@charset "UTF-8";
+
+#wrapper{
+			width: 800px;
+			margin: 0 auto;
+			border: solid 1px black;
+			overflow: hidden;
+		}
+
+		.default{
+			border-collapse: collapse;
+			border: 2px solid black;
+			margin: 0 auto;
+			width: 300px;
+			height: 300px;
+			text-align: center;
+			font-weight: bold;
+			font-size: large;
+		}
+/*サンプル01*/
+		.bg01{
+			background: -webkit-linear-gradient(
+				180deg,#ff8800 0%,#ffff00 100%);
+			border-collapse: collapse;
+			margin: 0 auto;
+			width: 500px;
+			height: 400px;
+			text-align: center;
+			-webkit-transform:perspective(700px) rotateY(10deg);
+			font-size: x-large;
+		}
+/*サンプル02*/
+		.bg02{
+			background-color: #efefef;
+			border-collapse: collapse;
+			border: solid 3px skyblue;
+			margin: 0 auto;
+			width: 500px;
+			height: 400px;
+			text-align: center;
+			font-family: cursive;
+			box-shadow: 10px 10px 10px;
+
+			text-decoration: underline;
+
+		}
+
+
+		/*日曜日の色*/
+		table td:first-child{
+			color: red;
+		}
+		/*土曜日の色*/
+		table td:last-child{
+			color: blue;
+		}
+/*マークアップデフォルト*/
+		.mark{
+			background-color: #ffd6d6;
+		}
+/*マークアップ01*/
+		.mark01{
+			background-color: #3cb371;
+		}
+/*マークアップ02*/
+		.mark02{
+			background-color: #fff;
+			color: yellow;
+			border: solid 5px black;
+			font-size: large;
+		}
+
+		.lastMonthCalendar_table{
+			float: left;
+			margin: 10px 10px 10px 10px;
+			width: 200px;
+			height: 200px;
+
+		}
+
+
+		.nextMonthCalendar_table{
+			float: right;
+			margin: 0px 10px 100px 10px;
+			width: 200px;
+			height: 200px;
+		}
